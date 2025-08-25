@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Card</title>
+    <!-- favicon -->
+    <link rel="icon" href="./resources/favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100dvh;
+            display: grid;
+            place-items: center;
+            font-family: "Sora", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: weight;
+            font-style: normal;
+        }
+
+        article {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 368px;
+            padding: 16px;
+            padding-bottom: 20px;
+            border-radius: 22px;
+            background-color: #FAFAF9;
+            box-shadow: 8px 8px 20px 0px rgba(85, 85, 85, 0.08);
+
+            img {
+                border-radius: 6px;
+            }
+
+            div {
+                
+                h1 {
+                    margin: 16px 0 6px 0;
+                    font-size: 18px;
+                    color: #20293A
+                }
+
+                p {
+                    margin: 0 0 20px 0;
+                    color: #394150;
+                    font-size: 14px;
+                    line-height: 1.5;
+                }
+
+                footer {
+                    border-top: solid 1px #E5EAF0;
+                    padding-top: 20px;
+                    margin-left: -16px;
+                    margin-right: -16px;
+                    padding-left: 16px;
+                    padding-right: 16px;
+
+                    span {
+                        color: #394150;
+                        font-size: 12px;
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+
+        .badge {
+            color: #7C19EE;
+            background-color: #E5EAF0;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 22px;
+            
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <img src="./resources/Cactus.jpg" alt="">
+
+        <div>
+            <span class="badge">Desing</span>
+
+            <h1>Embracing Minimalims</h1>
+
+            <p>
+                From minimalist sculptures to minimalist paintings, this blog will inspire you to  appreciate the beauty that lies in simplicity.
+            </p>
+
+            <footer>
+                <span>Annie Spratt</span>
+            </footer>
+        </div>
+    </article>
+</body>
+</html>
