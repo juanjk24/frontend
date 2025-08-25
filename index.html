@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@juanjk24 design projects</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 40px 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 32px 24px;
+            width: 260px;
+            text-align: center;
+            transition: box-shadow 0.2s;
+            text-decoration: none;
+            color: #222;
+        }
+        .card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.16);
+        }
+        .card-img {
+            width: 80px;
+            height: auto;
+            object-fit: contain;
+            margin-bottom: 16px;
+        }
+        .card-title {
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        .card-desc {
+            font-size: 1em;
+            color: #555;
+        }
+    </style>
+
+    <h1 style="text-align:center;">Proyectos</h1>
+    <div class="container">
+        <a class="card" href="minimal-blog-card/">
+            <img class="card-img" src="minimal-blog-card/resources/Cactus.jpg" alt="Minimal Blog Card">
+            <div class="card-title">Minimal Blog Card</div>
+            <div class="card-desc">Tarjeta de blog minimalista</div>
+        </a>
+        <a class="card" href="Testimonial-page-master/">
+            <img class="card-img" src="Testimonial-page-master/resources/google-png.png" alt="Testimonial Page">
+            <div class="card-title">Testimonial Page</div>
+            <div class="card-desc">Página de testimonios</div>
+        </a>
+    </div>
+</body>
+</html>
