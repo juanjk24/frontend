@@ -14,10 +14,12 @@
             padding: 40px 0;
         }
         .container {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
-            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         .card {
             background: #fff;
@@ -38,6 +40,13 @@
             height: auto;
             object-fit: contain;
             margin-bottom: 16px;
+        }
+        .card-img.logo-bg {
+            background-image: url('./contact-page-master/resources/background.svg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 12px;
+            border-radius: 8px;
         }
         .card-title {
             font-size: 1.3em;
@@ -68,6 +77,12 @@
             <img class="card-img" src="./Business-blog-card-starter-master/resources/hero-image.jpg" alt="Business Blog Card">
             <div class="card-title">Business Blog Card</div>
             <div class="card-desc">Tarjeta de blog empresarial</div>
+        </a>
+
+        <a class="card" href="contact-page-master/">
+            <img class="card-img logo-bg" src="./contact-page-master/resources/Logo.svg" alt="Contact Page">
+            <div class="card-title">Contact Page</div>
+            <div class="card-desc">Página de contacto</div>
         </a>
     </div>
 </body>

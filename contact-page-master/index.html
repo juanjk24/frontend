@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      href="resources/favicon.ico"
+      type="image/x-icon"
+      sizes="96x96"
+    />
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Contact Page | devChallenges.io</title>
+  </head>
+  <body>
+    <header>
+      <img src="./resources/Logo.svg" alt="Logo Becv">
+    </header>
+
+    <main>
+      <h1>Interested in our business pricing?</h1>
+      <p>Fill out the form to view details and we’ll contact you as soon as possible.</p>
+    </main>
+
+    <form>
+      <div class="input-group">
+        <label for="name">
+          Name
+          <input type="text" id="name" placeholder="Ethan Johnson" />
+        </label>
+
+        <label for="email">
+          Company Email
+          <input type="email" id="email" placeholder="ethan@johnson.com" />
+        </label>
+      </div>
+
+      <div class="input-group">
+        <label for="employees">
+          Company Size
+          <select name="employees" id="employees">
+            <option value="50-100" selected>50-100 employees</option>
+            <option value="100-200">100-200 employees</option>
+            <option value="200-500">200-500 employees</option>
+            <option value="500+">500+ employees</option>
+          </select>
+        </label>
+
+        <label for="subject">
+          Company subject
+          <select name="subject" id="subject">
+            <option value="landing-pages" selected>Building Landing pages</option>
+            <option value="development">Development</option>
+            <option value="marketing">Marketing</option>
+            <option value="sales">Sales</option>
+          </select>
+        </label>
+      </div>
+
+      <label for="message">
+        Message
+        <textarea id="message" placeholder="50-100 employees"></textarea>
+      </label>
+
+      <button type="submit">Contact Sales</button>
+    </form>
+  </body>
+</html>
