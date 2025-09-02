@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 200px;
+    width: max-content;
+    margin: auto;
+    text-align: center;
+
+    h1 {
+        font-size: 2.25rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+}
+
+main {
+    min-height: 100vh;
+    background-color: #F8FAFC;
+    padding-bottom: 40px;
+}
+
+.ask-section {
+    max-width: 720px;
+    margin: auto;
+    margin-bottom: 40px;
+    padding-top: 60px;
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 26px;
+    }
+
+    p {
+        margin-bottom: 26px;
+    }
+
+    .ask-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-left: 20px;
+        margin-bottom: 26px;
+    }
+}
+
+.ask-section:last-child {
+    padding-top: 40px;
+}
+
+.hr {
+    max-width: 720px;
+    margin: auto;
+    background-color: #D2D5DA;
+}
+
+a {
+    text-decoration: none;
+    color: #4E80EE;
+}
