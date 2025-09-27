@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador de Memes</title>
+
+    <link rel="stylesheet" href="./styles/index.css" />
+    <script type="module" src="./js/index.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Plantillas de Memes</h1>
+      <p>¡Descubre los mejores memes, crea el tuyo y compártelo con amigos!</p>
+    </header>
+
+    <!-- buscador -->
+    <form id="search-form">
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Buscar Meme..." />
+        <button type="submit" class="search-btn">
+          <img src="./assets/search.svg" alt="Buscar">
+        </button>
+      </div>
+    </form>
+
+    <!-- lista de memes -->
+    <main id="main">
+        <ul id="list-images"></ul>
+    </main>
+
+    <!-- apartado editor -->
+    <div id="editor">
+      <img id="meme-preview" src="" alt="Meme preview" />
+      <div class="inputs-container" id="inputs"></div>
+      <button class="generate" id="generate-btn">
+        <img class="icon" src="./assets/upload.svg" alt="Generar">
+        <span>Generar Meme</span>
+    </button>
+      <div id="result"></div>
+
+      <button class="back-btn" id="back-btn">
+        <img class="icon" src="./assets/arrow-left.svg" alt="Volver">
+        <span>Volver</span>
+    </button>
+    </div>
+  </body>
+</html>

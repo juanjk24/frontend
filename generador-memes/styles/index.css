@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap');
+@import url('./search.css');
+@import url('./list-memes.css');
+@import url('./generate-meme.css');
+
+:root {
+    --bg-primary: #020817;
+    --bg-secondary: #1f2937;
+    --border-color: #374151;
+
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b9;
+
+    --button-primary: #9947eb;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    /* background: linear-gradient(to right, #19ddeb, #3f4fe8); */
+    background-color: var(--bg-primary);
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+header {
+    text-align: center;
+    margin-block: 40px;
+
+    h1 {
+        margin: 0;
+        font-size: 3rem;
+        color: var(--text-primary)
+    }
+
+    p {
+        margin: 0;
+        font-size: 1.5rem;
+        color: var(--text-secondary);
+    }
+}
