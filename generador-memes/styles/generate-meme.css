@@ -121,3 +121,33 @@ button.generate:hover {
     margin: 0;
 }
 
+@media screen and (max-width: 768px) {
+    #editor {
+        max-width: 350px;
+        padding: 15px;
+    }
+
+    #meme-preview {
+        margin-bottom: 10px;
+    }
+
+    .inputs-container input {
+        font-size: 12px;
+    }
+
+    button.generate {
+        font-size: 14px;
+    }
+
+    #result img {
+        max-width: 90%;
+    }
+
+    .download-btn {
+        font-size: 12px;
+    }
+
+    .back-btn {
+        font-size: 12px;
+    }
+}
