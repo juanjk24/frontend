@@ -26,10 +26,12 @@ export function createMemeButton(template, onClickHandler) {
 }
 
 export function clearContainer(container) {
+    container.classList.remove('no-results');
     container.innerHTML = '';
 }
 
 export function showNoResults(container) {
+    container.classList.add('no-results');
     container.innerHTML = `
         <li class="no-results">
             <p>No se encontraron memes con ese término de búsqueda.</p>
