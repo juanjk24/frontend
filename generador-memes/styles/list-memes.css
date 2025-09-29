@@ -6,13 +6,11 @@
 }
 
 #list-images {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
-    gap: 15px;
+    column-count: 4;       /* escritorio grande */
+    column-gap: 15px;
     padding: 0;
+    margin: 0;
     list-style: none;
-    justify-content: center;
-    align-items: start;
 }
 
 .meme-btn {
@@ -20,7 +18,7 @@
     flex-direction: column;
     align-items: center;
     border: none;
-    background: #fff;
+    background: var(--bg-secondary);
     padding: 10px;
     border-radius: 12px;
     cursor: pointer;
@@ -28,6 +26,8 @@
     transition: transform 0.15s, box-shadow 0.15s;
     width: 100%;
     height: min-content;
+    break-inside: avoid;   /* evita cortes raros */
+    margin-bottom: 15px;
 }
 
 .meme-btn:hover {
@@ -45,7 +45,7 @@
 
 .meme-btn span {
     font-size: 14px;
-    color: #333;
+    color: var(--text-primary);
     text-align: center;
     font-weight: 600;
 }
@@ -72,4 +72,26 @@
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 8px;
+}
+
+/* Responsive design */
+/* Tablet */
+@media (max-width: 1024px) {
+  #list-images {
+    column-count: 3;
+  }
+}
+
+/* Móvil grande */
+@media (max-width: 768px) {
+  #list-images {
+    column-count: 2;
+  }
+}
+
+/* Móvil pequeño */
+@media (max-width: 480px) {
+  #list-images {
+    column-count: 1;
+  }
 }
