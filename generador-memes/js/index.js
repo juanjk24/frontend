@@ -1,6 +1,6 @@
 import { getTemplates, getTemplate, generateMemeUrl } from './api.js';
 import { filterTemplates, debounce } from './search.js';
-import { createMemeButton, clearContainer, showNoResults, createTextInput } from './ui.js';
+import { createMemeButton, clearContainer, showNoResults, createTextInput, showLoadingIndicator, removeLoadingIndicator } from './ui.js';
 import { createDownloadButton } from './download-meme.js';
 import { showSuccess, showError, showWarning } from './notifications.js';
 
@@ -19,12 +19,21 @@ const mainElement = document.querySelector('#main');
 // Variables globales
 let currentTemplate = null;
 let allTemplates = [];
+let displayedTemplates = [];
+let currentPage = 0;
+let filteredTemplates = [];
+let isLoading = false;
+const ITEMS_PER_PAGE = 20;
 
-// Función para cargar y mostrar todas las plantillas
-async function loadAndDisplayTemplates() {
+// Función para cargar todas las plantillas inicialmente
+async function loadTemplates() {
     try {
-        allTemplates = await getTemplates();
-        renderMemeList(allTemplates);
+        if (allTemplates.length === 0) {
+            allTemplates = await getTemplates();
+        }
+        filteredTemplates = [...allTemplates];
+        resetPagination();
+        loadMoreTemplates();
     } catch (error) {
         console.error('Error al cargar las plantillas:', error);
         listImages.innerHTML = '<li class="error">Error al cargar los memes. Intenta recargar la página.</li>';
@@ -32,19 +41,65 @@ async function loadAndDisplayTemplates() {
     }
 }
 
-// Función para renderizar la lista de memes
-function renderMemeList(templates) {
+// Función para resetear la paginación
+function resetPagination() {
+    currentPage = 0;
+    displayedTemplates = [];
     clearContainer(listImages);
+    removeLoadingIndicator(mainElement);
+}
+
+// Función para cargar más plantillas (paginación)
+function loadMoreTemplates() {
+    if (isLoading) return;
     
-    if (templates.length === 0) {
-        showNoResults(listImages);
+    const startIndex = currentPage * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const newTemplates = filteredTemplates.slice(startIndex, endIndex);
+    
+    if (newTemplates.length === 0) {
+        if (displayedTemplates.length === 0) {
+            showNoResults(listImages);
+        }
+        removeLoadingIndicator(mainElement);
         return;
     }
+    
+    // Mostrar indicador de carga si hay más contenido para cargar
+    const hasMoreContent = endIndex < filteredTemplates.length;
+    
+    if (currentPage > 0 && hasMoreContent) {
+        isLoading = true;
+        showLoadingIndicator(mainElement);
+        
+        // Simular un pequeño delay para mejor UX
+        setTimeout(() => {
+            removeLoadingIndicator(mainElement);
+            displayedTemplates.push(...newTemplates);
+            renderNewTemplates(newTemplates);
+            currentPage++;
+            isLoading = false;
+        }, 500);
+    } else {
+        displayedTemplates.push(...newTemplates);
+        renderNewTemplates(newTemplates);
+        currentPage++;
+    }
+}
 
+// Función para renderizar nuevas plantillas (sin limpiar las existentes)
+function renderNewTemplates(templates) {
     templates.forEach(template => {
         const memeElement = createMemeButton(template, openEditor);
         listImages.appendChild(memeElement);
     });
+}
+
+// Función para manejar búsquedas con infinite scroll
+function handleFilteredResults(searchResults) {
+    filteredTemplates = searchResults;
+    resetPagination();
+    loadMoreTemplates();
 }
 
 // Función para abrir el editor de memes
@@ -61,6 +116,9 @@ async function openEditor(id) {
         mainElement.style.display = 'none';
         searchForm.style.display = 'none';
         editor.style.display = 'block';
+        
+        // Desactivar scroll infinito en el editor
+        window.removeEventListener('scroll', throttledScrollHandler);
 
         // Configurar preview del meme
         memePreview.src = currentTemplate.blank;
@@ -82,9 +140,37 @@ async function openEditor(id) {
 
 // Función de búsqueda con debounce
 const handleSearch = debounce((searchTerm) => {
-    const filteredTemplates = filterTemplates(allTemplates, searchTerm);
-    renderMemeList(filteredTemplates);
+    const searchResults = filterTemplates(allTemplates, searchTerm);
+    handleFilteredResults(searchResults);
 }, 300);
+
+// Función para detectar scroll infinito
+function handleInfiniteScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    
+    // Si el usuario está cerca del final de la página (dentro de 100px)
+    if (scrollTop + windowHeight >= documentHeight - 100) {
+        loadMoreTemplates();
+    }
+}
+
+// Throttle para optimizar el scroll
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
+
+const throttledScrollHandler = throttle(handleInfiniteScroll, 200);
 
 // Event Listeners
 generateBtn.addEventListener('click', () => {
@@ -128,6 +214,9 @@ backBtn.addEventListener('click', () => {
     editor.style.display = 'none';
     mainElement.style.display = 'block';
     searchForm.style.display = 'block';
+    
+    // Reactivar el scroll infinito al volver a la lista
+    window.addEventListener('scroll', throttledScrollHandler);
 });
 
 // Configurar búsqueda
@@ -142,5 +231,8 @@ searchInput.addEventListener('input', (e) => {
     handleSearch(searchTerm);
 });
 
+// Event listener para scroll infinito
+window.addEventListener('scroll', throttledScrollHandler);
+
 // Inicializar la aplicación
-loadAndDisplayTemplates();
+loadTemplates();

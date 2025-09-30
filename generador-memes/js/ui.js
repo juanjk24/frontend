@@ -47,3 +47,31 @@ export function createTextInput(index) {
     input.className = 'meme-text-input';
     return input;
 }
+
+export function createLoadingIndicator() {
+    const loading = document.createElement('div');
+    loading.className = 'loading-indicator';
+    loading.innerHTML = `
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Cargando más memes...</p>
+        </div>
+    `;
+    return loading;
+}
+
+export function showLoadingIndicator(mainContainer) {
+    // Remover loading indicator existente si hay uno
+    removeLoadingIndicator(mainContainer);
+    
+    const loadingIndicator = createLoadingIndicator();
+    mainContainer.appendChild(loadingIndicator);
+    return loadingIndicator;
+}
+
+export function removeLoadingIndicator(mainContainer) {
+    const existingLoader = mainContainer.querySelector('.loading-indicator');
+    if (existingLoader) {
+        existingLoader.remove();
+    }
+}
