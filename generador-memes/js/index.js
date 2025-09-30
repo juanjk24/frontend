@@ -2,6 +2,7 @@ import { getTemplates, getTemplate, generateMemeUrl } from './api.js';
 import { filterTemplates, debounce } from './search.js';
 import { createMemeButton, clearContainer, showNoResults, createTextInput } from './ui.js';
 import { createDownloadButton } from './download-meme.js';
+import { showSuccess, showError, showWarning } from './notifications.js';
 
 // Elementos del DOM
 const listImages = document.querySelector('#list-images');
@@ -27,6 +28,7 @@ async function loadAndDisplayTemplates() {
     } catch (error) {
         console.error('Error al cargar las plantillas:', error);
         listImages.innerHTML = '<li class="error">Error al cargar los memes. Intenta recargar la página.</li>';
+        showError('Error de conexión', 'No se pudieron cargar los memes. Verifica tu conexión a internet e intenta recargar la página.');
     }
 }
 
@@ -51,7 +53,7 @@ async function openEditor(id) {
         currentTemplate = await getTemplate(id);
         
         if (!currentTemplate) {
-            alert('Error al cargar la plantilla del meme');
+            showError('Error al cargar', 'No se pudo cargar la plantilla del meme. Intenta de nuevo.');
             return;
         }
 
@@ -74,7 +76,7 @@ async function openEditor(id) {
         result.innerHTML = '';
     } catch (error) {
         console.error('Error al abrir el editor:', error);
-        alert('Error al cargar la plantilla del meme');
+        showError('Error inesperado', 'Ocurrió un problema al cargar la plantilla. Por favor, intenta de nuevo.');
     }
 }
 
@@ -92,7 +94,7 @@ generateBtn.addEventListener('click', () => {
     const allEmpty = Array.from(inputs).every(input => !input.value.trim());
     
     if (allEmpty) {
-        alert('Por favor, completa al menos un campo de texto.');
+        showWarning('Campos vacíos', 'Por favor, completa al menos un campo de texto para generar el meme.');
         return;
     }
 
@@ -117,6 +119,9 @@ generateBtn.addEventListener('click', () => {
     // Limpiar y agregar el nuevo contenido
     result.innerHTML = '';
     result.appendChild(resultContent);
+    
+    // Mostrar notificación de éxito
+    showSuccess('¡Meme generado!', 'Tu meme se ha creado exitosamente. Puedes descargarlo usando el botón de abajo.');
 });
 
 backBtn.addEventListener('click', () => {

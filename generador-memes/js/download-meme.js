@@ -1,3 +1,5 @@
+import { showSuccess, showError } from './notifications.js';
+
 // Función para crear el botón de descarga
 export function createDownloadButton(imageUrl, templateName) {
     const downloadBtn = document.createElement('button');
@@ -38,8 +40,11 @@ async function downloadMeme(imageUrl, fileName) {
         
         // Limpiar el URL objeto
         window.URL.revokeObjectURL(downloadUrl);
+        
+        // Mostrar notificación de éxito
+        showSuccess('¡Descarga completada!', `El meme "${fileName}" se ha descargado exitosamente.`);
     } catch (error) {
         console.error('Error al descargar la imagen:', error);
-        alert('Error al descargar la imagen. Intenta de nuevo.');
+        showError('Error de descarga', 'No se pudo descargar la imagen. Verifica tu conexión e intenta de nuevo.');
     }
 }
